@@ -1,0 +1,30 @@
+{
+  "id": "2337593",
+  "name": "fakezhihu",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "9302661",
+      "name": "interface_setting_line",
+      "font_class": "outline",
+      "unicode": "e86a",
+      "unicode_decimal": 59498
+    },
+    {
+      "icon_id": "2829327",
+      "name": "power-off",
+      "font_class": "power-off",
+      "unicode": "e8f6",
+      "unicode_decimal": 59638
+    },
+    {
+      "icon_id": "3815838",
+      "name": "personage_pitch on",
+      "font_class": "personage_p",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    }
+  ]
+}

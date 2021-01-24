@@ -1,0 +1,45 @@
+@import "./normalize.css";
+@import "../icon/iconfont.css";
+
+@each $att,
+$exp in (ma, margin),
+(mt, margin-top),
+(mr, margin-right),
+(mb, margin-bottom),
+(ml, margin-left),
+(mx, margin-left),
+(pa, padding),
+(pt, padding-top),
+(pr, padding-right),
+(pb, padding-bottom),
+(pl, padding-left) {
+    @for $i from 1 through 10 {
+        .#{$att}-#{$i} {
+            #{$exp}: 10px*$i !important;
+        }
+    }
+}
+
+@each $att,
+$exp1,
+$exp2 in (mx, margin-left, margin-right),
+(my, margin-top, margin-bottom),
+(px, padding-left, padding-right),
+(py, padding-top, padding-bottom),
+    {
+    @for $i from 1 through 10 {
+        .#{$att}-#{$i} {
+            #{$exp1}: 10px*$i !important;
+            #{$exp2}: 10px*$i !important;
+        }
+    }
+
+    .#{$att}-a {
+        #{$exp1}: auto !important;
+        #{$exp2}: auto !important;
+    }
+}
+
+.iconfont {
+    font-size: 14px;
+}

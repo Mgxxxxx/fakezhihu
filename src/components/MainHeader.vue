@@ -14,10 +14,16 @@
         <el-menu-item index="2">发现</el-menu-item>
         <el-menu-item index="3">话题</el-menu-item>
       </el-menu>
-      <el-input class="search mx-2" placeholder="请输入内容" v-model="keywords">
-        <el-button slot="append" icon="el-icon-search"></el-button>
-      </el-input>
-      <el-button type="primary" size="small" class="mr-2">提问</el-button>
+      <div class="search-bar">
+        <el-input
+          class="search mx-2"
+          placeholder="请输入内容"
+          v-model="keywords"
+        >
+          <el-button slot="append" icon="el-icon-search"></el-button>
+        </el-input>
+        <el-button type="primary" class="mr-2">提问</el-button>
+      </div>
       <div class="user-info" v-if="!isLogin">
         <router-link to="{name: 'signup}">登录</router-link>
       </div>
@@ -77,32 +83,45 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.header-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.main-header {
   box-shadow: 1px 1px 3px #90939980;
-  img {
-    height: 34px;
-  }
-  .search {
-    max-width: 500px;
-  }
-  .header-menu {
-    border-bottom: transparent;
-    .el-menu-item {
-      height: 49px;
-    }
-  }
-  .user-info {
+  .header-content {
+    margin: 0 auto;
+    width: auto;
+    max-width: 1156px;
+    min-width: 1000px;
     display: flex;
+    justify-content: space-around;
     align-items: center;
-    .icon-item {
-      font-size: 24px;
+    img {
+      height: 34px;
     }
-    .avatar {
-      border-radius: 50%;
-      cursor: pointer;
+    .search-bar {
+      display: flex;
+      min-width: 500px;
+      .search {
+        max-width: 400px;
+      }
+    }
+    .header-menu {
+      border-bottom: transparent;
+      .el-menu-item {
+        height: 49px;
+        line-height: 49px;
+      }
+    }
+    .user-info {
+      margin-left: 20px;
+      display: flex;
+      align-items: center;
+      .icon-item {
+        font-size: 24px;
+        cursor: pointer;
+      }
+      .avatar {
+        border-radius: 50%;
+        cursor: pointer;
+      }
     }
   }
 }

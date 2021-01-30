@@ -43,3 +43,21 @@ $exp2 in (mx, margin-left, margin-right),
 .iconfont {
     font-size: 14px;
 }
+
+.middle-icon {
+    font-size: 19px;
+}
+
+.big-icon {
+    font-size: 24px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.clearfix::after {
+    content: '';
+    clear: both;
+    display: block;
+}

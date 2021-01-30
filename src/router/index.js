@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import Main from '../views/Main.vue'
+const Home = () => import('../views/Home.vue');
+const Main = () => import('../views/Main.vue');
+const SignUp = () => import('../views/SignUp.vue');
+const ListItem = () => import('../components/ListItem.vue');
 
 Vue.use(VueRouter)
 
@@ -11,8 +13,16 @@ const routes = [{
     children: [{
       path: '',
       component: Main,
-      name: 'Home',
+      children: [{
+        path: '',
+        name: 'Home',
+        component: ListItem
+      }]
     }]
+  }, {
+    path: '/signup',
+    name: 'signup',
+    component: SignUp
   },
   {
     path: '/about',

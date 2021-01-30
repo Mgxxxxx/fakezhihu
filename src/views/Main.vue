@@ -20,4 +20,17 @@ export default {
     
 
 <style scoped lang="scss">
+.main-content {
+  width: 1000px;
+  display: flex;
+  margin: 10px auto;
+  .list {
+    margin-right: 10px;
+    flex-shrink: 0;
+    width: 694px;
+  }
+  .slidebar {
+    flex: 1 1;
+  }
+}
 </style>

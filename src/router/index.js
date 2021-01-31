@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 const Home = () => import('../views/Home.vue');
 const Main = () => import('../views/Main.vue');
 const SignUp = () => import('../views/SignUp.vue');
+const Editor = () => import('../views/Editor.vue');
 const ListItem = () => import('../components/ListItem.vue');
 
 Vue.use(VueRouter)
@@ -23,6 +24,10 @@ const routes = [{
     path: '/signup',
     name: 'signup',
     component: SignUp
+  }, {
+    path: '/editor/:articleId',
+    name: 'editor',
+    component: Editor
   },
   {
     path: '/about',

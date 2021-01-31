@@ -36,6 +36,7 @@
               class="avatar"
               src="~@/assets/images/userhead2.jpg"
               alt="头像"
+              :title="this.name"
           /></span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item>
@@ -59,17 +60,43 @@
 </template>
 
 <script>
+import request from "@/service";
+
 export default {
   name: "MainHearder",
   data() {
     return {
       activeIndex: "1",
       keywords: "",
-      isLogin: true,
+      isLogin: false,
+      name: "",
     };
   },
+  mounted() {
+    this.checkLogin();
+  },
   methods: {
-    logout() {
+    async checkLogin() {
+      await request.get("/users/checkLogin").then((res) => {
+        if (res.status === 200) {
+          this.name = res.data.name;
+          this.isLogin = true;
+        } else {
+          this.$router.push({ name: "signup" });
+          this.isLogin = false;
+        }
+      });
+    },
+    async logout() {
+      await request.post("/users/logout").then((res) => {
+        if (res.status === 200) {
+          this.$Message.success("注销成功");
+          this.name = "";
+          this.$router.push({ name: "signup" });
+        } else {
+          this.$Message.error("注销失败，请稍后再试");
+        }
+      });
       console.log("logout");
     },
     handleSelect(key) {

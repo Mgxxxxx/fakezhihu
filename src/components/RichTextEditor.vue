@@ -7,6 +7,14 @@
       :options="options"
       @change="updateRichText($event)"
     ></quill-editor>
+    <!-- <el-upload
+      class="hidden"
+      action="/imgs/upload"
+      :on-success="uploadSuc"
+      accept=".jpg,.jpeg,.JPG,.JPEG,.png,.PNG"
+    >
+      <div ref="hiddenUpload"></div>
+    </el-upload> -->
   </div>
 </template>
 
@@ -15,6 +23,7 @@ import "quill/dist/quill.core.css";
 import "quill/dist/quill.snow.css";
 import "quill/dist/quill.bubble.css";
 import { quillEditor } from "vue-quill-editor";
+// import { imgDec } from "@/lib/config.js";
 
 export default {
   name: "RichTextEditor",
@@ -47,14 +56,33 @@ export default {
     };
   },
   mounted() {
+    this.$refs.myQuillEditor.quill
+      .getModule("toolbar")
+      .addHandler("image", this.imgHandler);
     this.$refs.myQuillEditor.quill.root.dataset.placeholder = this.placeHolder;
   },
   methods: {
-    // updateContent(content) {
-    //   this.$refs.myQuillEditor.quill.root.innerHTML = content;
-    // },
+    imgHandler(image) {
+      if (image) {
+        console.log("hidden");
+        this.$refs.hiddenUpload.click();
+      }
+    },
+    updateContent(content) {
+      this.$refs.myQuillEditor.quill.root.innerHTML = content;
+    },
     updateRichText(content) {
       this.$emit("updateContent", content.html, content.text);
+    },
+    uploadSuc(/*response*/) {
+      // const url = `${imgDec}${response.fileName}`;
+      const fake =
+        "https://pic3.zhimg.com/80/v2-92ad52700c8ea35256fa74d2ad3a54ee_720w.jpg";
+      this.$refs.myQuillEditor.quill.insertEmbed(
+        this.$refs.myQuillEditor.quill.getSelection(),
+        "image",
+        fake
+      );
     },
   },
 };

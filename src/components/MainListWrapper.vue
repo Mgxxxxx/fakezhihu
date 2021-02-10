@@ -18,6 +18,7 @@
 
 <script>
 import MainListNav from "./MainListNav.vue";
+import request from "@/service";
 
 export default {
   name: "MainListWrapper",
@@ -27,7 +28,7 @@ export default {
   data() {
     return {
       type: "main",
-      fakeInfo: [
+      fakeInfos: [
         {
           author: {
             name: "张国华",
@@ -99,13 +100,44 @@ export default {
             "https://pic3.zhimg.com/50/v2-c82ff653b918de111219a25608cc1520_400x224.jpg",
         },
       ],
+      fakeInfo: [],
     };
+  },
+  watch: {
+    $route: "fetchDate",
+  },
+  created() {
+    this.fetchDate();
+  },
+  methods: {
+    fetchDate() {
+      this.loading = true;
+      if (this.$route.name === "Home") {
+        this.getNormalList();
+        this.loading = false;
+      } else if (this.$route.name === "hot") {
+        console.log("here is hot page");
+      } else {
+        this.getNormalList();
+        this.loading = false;
+      }
+    },
+    async getNormalList() {
+      await request.get("/articles/list").then((res) => {
+        if (res.data.status === 200) {
+          this.fakeInfo = res.data.list;
+        }
+      });
+    },
   },
 };
 </script>
 
 <style scoped lang="scss">
 .card-content {
-  margin: 0 -20px;
+  margin: -20px -20px 0 -20px;
+  & > .answer-main {
+    padding: 0 20px 20px 20px;
+  }
 }
 </style>

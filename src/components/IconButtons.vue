@@ -1,12 +1,16 @@
 <template>
   <div class="wrapper">
     <div class="icon-item" v-if="exists.indexOf('question') >= 0">
-      <i class="el-icon-tickets big-icon"></i>
-      <p>写回答</p>
+      <router-link :to="{ name: 'detailsQuestion', params: { id: 5 } }">
+        <i class="el-icon-tickets big-icon"></i>
+        <p>写回答</p>
+      </router-link>
     </div>
     <div class="icon-item" v-if="exists.indexOf('article') >= 0">
-      <i class="el-icon-edit-outline big-icon"></i>
-      <p>写文章</p>
+      <router-link :to="{ name: 'editor', params: { articleId: 0 } }">
+        <i class="el-icon-edit-outline big-icon"></i>
+        <p>写文章</p>
+      </router-link>
     </div>
     <div class="icon-item" v-if="exists.indexOf('thinking') >= 0">
       <i class="iconfont icon-Thinking big-icon"></i>
@@ -50,6 +54,9 @@ export default {
   .icon-item {
     text-align: center;
     cursor: pointer;
+  }
+  a {
+    color: black;
   }
 }
 </style>

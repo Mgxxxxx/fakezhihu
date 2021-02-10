@@ -99,6 +99,7 @@
 <script>
 import request from "@/service";
 import md5 from "md5";
+import { mapMutations } from "vuex";
 
 export default {
   name: "SignUpCore",
@@ -125,7 +126,7 @@ export default {
       }
     };
     return {
-      pwdReg: /^[a-zA-Z0-9]{3}$/,
+      pwdReg: /^[a-zA-Z0-9]{1}$/,
       nowStatus: "login",
       tips: {
         register: {
@@ -173,6 +174,7 @@ export default {
     };
   },
   methods: {
+    ...mapMutations(["setUserInfo"]),
     async register() {
       await request
         .post("/users/create", {
@@ -215,6 +217,8 @@ export default {
         })
         .then((res) => {
           if (res.status === 200) {
+            console.log(res);
+            this.setUserInfo(res.data);
             this.$Message.success("登录成功");
             this.$router.push({ name: "Home" });
           } else {

@@ -5,11 +5,18 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    userInfo: null
+  },
+  getters: {
+    getUserInfo(s) {
+      return s.userInfo;
+    }
   },
   mutations: {
+    setUserInfo(s, userInfo) {
+      s.userInfo = userInfo;
+    }
   },
-  actions: {
-  },
-  modules: {
-  }
+  actions: {},
+  modules: {}
 })
